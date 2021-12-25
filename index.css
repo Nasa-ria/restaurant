@@ -3,7 +3,8 @@
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+	box-sizing: content-box;
+	overflow-x: hidden !important;
 }
 header {
 	position: fixed;
@@ -22,12 +23,35 @@ header.sticky {
 img {
 	width: 7em;
 }
-.nav_list {
+.hamburger {
+	display: none;
+}
+
+.bar {
+	display: block;
+	width: 25px;
+	height: 3px;
+	margin: 5px auto;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	background-color: #02081b;
+}
+.nav {
 	display: flex;
 	flex-direction: row;
+}
+.nav_list {
+	display: flex;
 	justify-content: space-between;
 	padding: 20px;
+	display: flex;
+	flex-direction: row;
 	font-size: 12px;
+}
+
+.tabs {
+	display: flex;
+	gap: 2em;
 }
 a {
 	text-decoration: none;
@@ -55,7 +79,7 @@ a:hover {
 	margin-top: 50px;
 }
 .card img {
-	width: 14em;
+	width: 13.5em;
 	height: 9em;
 	padding: 5px;
 }
@@ -73,7 +97,7 @@ a:hover {
 	padding: 10.9%;
 	display: flex;
 	flex-direction: column;
-	
+	gap: 0;
 }
 .heading p {
 	font-family: roboto;
@@ -81,11 +105,11 @@ a:hover {
 	margin-top: 1em;
 	margin-left: 1em;
 }
-.heading h1 {
-	font-family: sans-serif;
-	font-size: 7em;
+.heading_h1 {
+	font-family: roboto;
+	font-size: 5em;
 	margin-left: 0.5em;
-	/* font-weight:bolder; */
+	font-weight: bolder;
 }
 .section_2 {
 	background-color: rgb(223, 213, 213);
@@ -142,25 +166,14 @@ a:hover {
 	display: flex;
 	flex-direction: column;
 	margin: 0 10%;
-	padding-top: 10em;
-}
-
-.popup {
-	position: relative;
-	display: inline-block;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-color: orange;
+	padding-top: 8em;
 }
 
 /* The actual popup */
 .popup .popuptext {
 	visibility: hidden;
 
-	background-color: #4444;
+	background-color: rgba(0, 0, 0, 0.664);
 	/* color: orange; */
 
 	text-align: center;
@@ -170,7 +183,7 @@ a:hover {
 
 	position: absolute;
 	list-style: none;
-	margin-left: 49em;
+	margin-left: 40em;
 	margin-top: -30em;
 	gap: 52px;
 	display: flex;
@@ -178,6 +191,8 @@ a:hover {
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+	transition: opacity 0.7s case-in-out;
+	/* transition: opacity 0.7s case-out; */
 }
 .popup .popuptext ul {
 	text-align: center;
@@ -198,6 +213,7 @@ a:hover {
 	visibility: visible;
 	-webkit-animation: fadeIn 1s;
 	animation: fadeIn 1s;
+	transition: opacity 0.7s case-in-out;
 }
 
 /* Add animation (fade in the popup) */
@@ -271,6 +287,7 @@ a:hover {
 	background-size: cover;
 	background-position: center;
 	height: 35em;
+	overflow-y: hidden;
 }
 .message {
 	color: gray;
@@ -284,6 +301,7 @@ a:hover {
 .section_6 {
 	background-image: url("assignment/bg5.jpg");
 	height: 480px;
+	overflow-y: hidden;
 }
 .list {
 	display: flex;
@@ -312,6 +330,7 @@ a:hover {
 	background-image: url("assignment/bg36.jpg");
 	height: 47em;
 	background-repeat: no-repeat;
+	/* overflow-y: hidden; */
 }
 h2 {
 	font-weight: 3;
@@ -375,7 +394,6 @@ form {
 	line-height: 50px;
 }
 
-	
 .footer {
 	background-color: #252830;
 }
@@ -404,3 +422,609 @@ form {
 	width: 2em;
 	height: 2em;
 }
+
+/* media query */
+/* for smaller screens like phones 600px down */
+@media only screen and (max-width: 600px) {
+	/* .nav_bar{ */
+
+	/* margin-left:-70em; */
+
+	/* } */
+	.nav_list {
+		position: fixed;
+		left: -100%;
+		top: 5rem;
+		flex-direction: column;
+		background-color: rgb(1, 1, 39);
+		width: 20em;
+		height: 20em;
+		border-radius: 10px;
+		text-align: center;
+		transition: 0.3s;
+		margin-left: 48em;
+		margin-top: 7em;
+		box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+	}
+
+	.nav_list.active {
+		left: 0;
+	}
+
+	.tabs {
+		margin-left: 9em;
+		display: flex;
+		flex-direction: column;
+	}
+	.hamburger {
+		display: block;
+		cursor: pointer;
+		/* margin-left: -70em; */
+	}
+	.hamburger.active .bar:nth-child(2) {
+		opacity: 0;
+	}
+
+	.hamburger.active .bar:nth-child(1) {
+		transform: translateY(8px) rotate(45deg);
+	}
+
+	.hamburger.active .bar:nth-child(3) {
+		transform: translateY(-8px) rotate(-45deg);
+	}
+	.heading {
+		display: flex;
+		margin-left: 69em;
+		width: 45em;
+		flex-direction: row;
+
+		padding: 0;
+	}
+	.heading_h1 {
+		width: 7em;
+		font-size: 39px;
+		margin-top: 5em;
+		margin-left: -4em;
+	}
+	.heading p {
+		font-size: 20px;
+		margin-top: 8em;
+
+		margin-left: 10em;
+	}
+	.section_1 {
+		margin-left: -69em;
+		height: 115em;
+	}
+	.food_cards {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		margin-left: 45em;
+		width: 70em;
+	}
+	.card {
+		width: 27em;
+		margin-left: 9em;
+		height: 19em;
+	}
+	.card img {
+		width: 26.5em;
+		height: 12em;
+	}
+	.h2 {
+		font-size: 14px;
+	}
+	.section_2 {
+		height: 22em;
+	}
+	.section_2 img {
+		width: 20em;
+		margin-top: 2em;
+	}
+	.section_3 {
+		height: 42em;
+	}
+	.popup .popuptext {
+		margin-left: 0;
+		width: 25em;
+		height: 60em;
+		margin-top: -48em;
+	}
+	.food_data {
+		display: flex;
+		flex-direction: column;
+		margin-left: -17em;
+	}
+	.section_4 {
+		height: 120em;
+	}
+	.section_6 .list {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		flex-wrap: nowrap;
+	}
+	.section_6 {
+		height: 90em;
+	}
+	.section_7 {
+		height: 70em;
+	}
+	.form_box {
+		width: 27em;
+		margin-left: 2em;
+	}
+	.mySlides {
+		width: 25em;
+		margin-left: -8em;
+	}
+	.footer_icons li {
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+		margin-top: 1em;
+	}
+}
+
+/* for smaller devices like portraits tablet and large phones 600px up */
+@media only screen and (min-width: 600px) {
+	.nav_list {
+		position: fixed;
+		left: -100%;
+		top: 5rem;
+		flex-direction: column;
+		background-color: rgb(1, 1, 39);
+		width: 20em;
+		height: 20em;
+		border-radius: 10px;
+		text-align: center;
+		transition: 0.3s;
+		margin-left: 58em;
+		/* margin-top: 2em; */
+		box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+	}
+
+	.nav_list.active {
+		left: 0;
+	}
+
+	.tabs {
+		margin-left: 9em;
+		display: flex;
+		flex-direction: column;
+	}
+	.hamburger {
+		/* position:absolute;  */
+		display: block;
+		cursor: pointer;
+		/* left:70em; */
+		/* margin-left: 70em; */
+		/* width: 90em; */
+
+		/* margin-top: 5em; */
+		/* margin-left: 3em; */
+		/* float: right; */
+	}
+
+	.hamburger.active .bar:nth-child(2) {
+		opacity: 0;
+	}
+
+	.hamburger.active .bar:nth-child(1) {
+		transform: translateY(8px) rotate(45deg);
+	}
+
+	.hamburger.active .bar:nth-child(3) {
+		transform: translateY(-8px) rotate(-45deg);
+	}
+
+	.heading {
+		display: flex;
+		margin-left: 79em;
+		width: 45em;
+		flex-direction: row;
+
+		padding: 0;
+	}
+	.heading_h1 {
+		width: 7em;
+		font-size: 39px;
+		margin-top: 5em;
+		margin-left: -4em;
+	}
+	.heading p {
+		font-size: 20px;
+		margin-top: 8em;
+
+		margin-left: 10em;
+	}
+
+	.section_1 {
+		margin-left: -78em;
+		height: 136em;
+	}
+	.food_cards {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		margin-left: 76em;
+	}
+	.card {
+		width: 35em;
+		margin-left: 2em;
+		height: 24em;
+	}
+	.card img {
+		width: 34.5em;
+		height: 17em;
+	}
+	.h2 {
+		font-size: 14px;
+	}
+	.section_2 {
+		height: 25em;
+	}
+	.section_2 img {
+		width: 30em;
+		margin-top: 2em;
+	}
+	.section_3 {
+		height: 42em;
+	}
+	.popup .popuptext {
+		margin-left: 0;
+		width: 25em;
+		height: 60em;
+		margin-top: -48em;
+	}
+	.food_data {
+		display: flex;
+		flex-direction: column;
+		margin-left: -17em;
+	}
+	.section_4 {
+		height: 120em;
+	}
+	.section_6 .list {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		flex-wrap: nowrap;
+	}
+	.section_6 {
+		height: 90em;
+	}
+	.section_7 {
+		height: 70em;
+	}
+	.form_box {
+		width: 34em;
+		margin-left: 2em;
+	}
+	.mySlides {
+		width: 25em;
+		margin-left: -8em;
+	}
+	.footer_icons li {
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+		margin-top: 1em;
+	}
+}
+
+/* medium devices landscape tablet 768px and up */
+/* @media only screen and (min-width:768px){
+	.nav_list{
+		display:none;
+	}
+	.heading{
+		display:flex;
+		flex-direction: column;
+		padding: 0;
+		font-size: 0;
+		gap: 1px;
+
+	}
+	.heading h1{
+		font-size: 39px;
+	
+		margin-left:22em;
+	
+		font-size: 50px;
+		padding: 0;
+	}
+	.heading p{
+		font-size: 20px;
+		margin-left: 52em;
+	}
+	.section_1{
+		margin-left: -40em;
+		height: 58em;
+	}
+	.food_cards{
+		display: flex;
+		flex-direction: row;
+		margin-left: 29em;
+		width: 70em;
+		justify-content:center;
+
+	}
+	.card{
+		width: 9em;
+		margin-left: 1em;
+		height: 20em;
+	}
+	.card img{
+		width: 8.5em;
+		height: 5em;
+	}
+	.h2{
+     font-size: 14px;
+	
+	}
+	.section_2{
+		height: 24em;
+	}
+	.section_2 img{
+		width: 30em;
+		margin-top: 2em;
+	}
+	.section_3{
+		height: 42em;
+	}
+.popup .popuptext{
+	margin-left: 0;
+	width: 25em;
+	height:60em ;
+	margin-top: -48em;
+}
+.food_data{
+	display: flex;
+	flex-direction:row;
+	margin-left: 4em;
+	width:40em;
+}
+.section_4{
+	height: 70em;
+}
+.section_6 .list{
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	flex-wrap: nowrap;
+	
+	
+}
+.section_6{
+	height: 90em;
+
+}
+.section_7{
+	height: 70em;
+	
+}
+.form_box{
+	width:44em;
+	margin-left:2em;
+
+}
+.mySlides{
+width: 25em;
+margin-left:-8em;
+}
+.foot{
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+	margin-top: 1em;
+
+
+}
+.footer_icons{
+	display: flex;
+	gap:1em;
+}
+} */
+/* medium devices landscape tablet 992px and up */
+/* @media only screen and (min-width:992px){
+	.nav_list{
+		display:none;
+	}
+	.heading{ 
+	 padding: 10.9%;
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+	}
+.heading h1{
+		font-size: 59px; 
+display:flex;
+flex-direction: column;
+gap: 5px;
+		 margin-left:10em; 
+
+		padding: 0;
+	} 
+	.heading p{
+		font-size: 20px;
+		margin-left: 34em;
+		padding: 0;
+	}
+	.section_1{
+		margin-left: -10em;
+		height: 62em;
+	}
+	.food_cards{
+		display: flex;
+		flex-direction: row;
+		margin-left: 3.6em;
+		width: 70em;
+		justify-content:center;
+
+	}
+	.card{
+		width: 12em;
+		margin-left: 1em;
+		height: 20em;
+	}
+	.card img{
+		width: 11.5em;
+		height: 10em;
+	}
+	.h2{
+     font-size: 19px;
+	
+	}
+	.section_2{
+		height: 28em;
+	}
+	.section_2 img{
+		width: 40em;
+		margin-top: 2em;
+	}
+	.section_3{
+		height: 42em;
+	}
+.popup .popuptext{
+	margin-left: 0;
+	width: 25em;
+	height:60em ;
+	margin-top: -48em;
+}
+.food_data{
+	display: flex;
+	flex-direction:row;
+	margin-left: 1em;
+	justify-content: center;
+	width:58em;
+}
+.section_4{
+	height: 50em;
+}
+.section_6 .list{
+	display: flex;
+	flex-direction: row;
+	gap: 6em;
+	flex-wrap: nowrap;
+	
+	
+}
+.section_6{
+	height: 27em;
+
+}
+.section_7{
+	height: 44em;
+	
+}
+.form_box{
+	width:94em;
+	margin-left:-16em;
+	display: flex;
+	flex-direction: row;
+
+
+}
+.paragraph{
+	font-size: 15px;
+}
+.form_icons{
+	font-size: 15px;
+}
+.mySlides{
+width: 45em;
+margin-left:1em;
+}
+.foot{
+	display: flex;
+	flex-direction: row;
+	margin-top: 1em;
+
+}
+.footer_icons{
+	display: flex;
+	gap:1em;
+}
+} */
+
+/* extra large devices large laptops and desktops 1200px and up */
+/* @media only screen and (min-width:1200px){
+.nav_list{
+	display: flex;
+
+	margin-left: 1em;
+}
+.section_1{
+	margin-left: 0;
+	height: 170vh;
+}
+.heading h1{
+margin-left: 3em;
+}
+.heading p{
+	margin-left: -28em;
+	margin-top: 10em;
+}
+.card{
+	width: 15em;
+	margin-left: 1em;
+	height: 20em;
+}
+.card img{
+	width:14.2em;
+}
+.food_cards{
+	display: flex;
+	flex-direction: row;
+	margin-left:5em;
+	width: 70em;
+	align-items: center;
+	justify-content:center;
+
+}
+.popup.popuptext {
+	margin-left: 40em;
+	width: 40em;
+	height:10em ;
+	margin-top: 12em;
+}
+.food_data{
+	display: flex;
+	flex-direction:row;
+	margin-left: 10em;
+	justify-content: center;
+	/* width:88em; */
+
+/* } */
+/* .list{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 20em;
+
+}
+.form_box{
+	width:94em;
+	margin-left:-6em;
+	display: flex;
+	flex-direction: row;
+}
+.paragraph{
+	font-size: 19px;
+}
+.footer_icons li{
+	display: flex;
+	gap:2em;
+
+}
+.foot{
+	display: flex;
+	flex-direction: row;
+	gap: 15em;
+	margin-top: 1em;
+	
+
+}
+}  */
